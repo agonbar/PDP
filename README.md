@@ -43,13 +43,13 @@ $ mysql -u iu -pui < db.dump
 ### Analysis (ETA 04/05/18)
 
 [@agonbar](https://github.com/agonbar) Will be in charge of the design of:
-- Domain model.
-- Sequence Diagrams.
+- [Domain model.](https://raw.githubusercontent.com/agonbar/PDP/master/docs/DomainModel.png)
+- [Sequence Diagrams.](https://raw.githubusercontent.com/agonbar/PDP/master/docs/Sequence.png)
 
 [@srfernandez](https://github.com/srfernandez) Will be in charge of:
-- Use Case Model.
-- Detailed description of Use Case Models.
-- E-R Diagrams.
+- [Use Case Model.](https://raw.githubusercontent.com/agonbar/PDP/master/docs/Use%20Case%20model.jpg)
+- [Detailed description of Use Case Models.](https://github.com/agonbar/PDP/blob/master/docs/Use%20case%20model%20definition.doc?raw=true)
+- [E-R Diagrams.](https://raw.githubusercontent.com/agonbar/PDP/master/docs/ER.png)
 
 ### Analysis (ETA  11/05/18)
 
