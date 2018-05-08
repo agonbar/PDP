@@ -27,7 +27,7 @@ sed -i 's/secret/iu/g' /var/www/html/lamorisse/config/app.php
 
 # Load our schema
 ADD db.dump db.dump
-RUN mysql -u iu -piu < db.dump
+RUN /etc/init.d/mysql start && mysql -u iu -piu < db.dump
 
 # Bootstrap CakePHP code
 RUN /var/www/html/lamorisse/bin/cake bake all users && \
