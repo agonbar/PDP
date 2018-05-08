@@ -20,8 +20,8 @@
 ## Install
 With Docker
 ```bash
-# Clone this repository
-$ docker run agonbar/PDP
+# Run from dockerhub
+$ docker run -itdp 80:80 -p 22:22 -p 8765:8765 agonbar/pdp
 ```
 Normal installation (not recommended)
 ```bash
@@ -130,10 +130,10 @@ $ mysql -u iu -pui < db.dump
 
 ## Documentation
 
-- E-R
-- Use Case Model
-- Domain Model
-- Sequence Model
+- [E-R.](https://raw.githubusercontent.com/agonbar/PDP/master/docs/ER.png)
+- [Use Case Models.](https://raw.githubusercontent.com/agonbar/PDP/master/docs/Use%20Case%20model.jpg)
+- [Domain model.](https://raw.githubusercontent.com/agonbar/PDP/master/docs/DomainModel.png)
+- [Sequence Diagrams.](https://raw.githubusercontent.com/agonbar/PDP/master/docs/Sequence.png)
 
 ## License
 
