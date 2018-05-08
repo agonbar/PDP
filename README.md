@@ -1,7 +1,6 @@
-
 <h1 align="center">
   <br>
-  <a href="http://www.adriangonzalezbarbosa.eu/PDP"><img src="https://raw.githubusercontent.com/agonbar/PDP/master/lamorisse.png" alt="Lamorisse Logo" width="200"></a>
+  <a href="http://agonbar.duckdns.org"><img src="https://raw.githubusercontent.com/agonbar/PDP/master/lamorisse.png" alt="Lamorisse Logo" width="200"></a>
   <br>
   Lamorisse
   <br>
@@ -16,6 +15,8 @@
 </p>
 
 **Lamorisse** is a risk management, web based software, tailored to the needs of the current market. It can be run on a local environment or open to the internet, as needed. Stop those long e-mail chains between your consultants, keep everything on one place and stop worrying.
+
+<a href="http://agonbar.duckdns.org"><img src="https://img.shields.io/docker/build/agonbar/pdp.svg" alt="Build Status" width="200"></a>
 
 ## Install
 With Docker

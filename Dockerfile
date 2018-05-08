@@ -25,12 +25,10 @@ echo "GRANT ALL PRIVILEGES ON *.* TO 'iu'@'localhost' WITH GRANT OPTION;" >> dbS
 RUN sed -i 's/my_app/iu/g' /var/www/html/lamorisse/config/app.php && \
 sed -i 's/secret/iu/g' /var/www/html/lamorisse/config/app.php
 
-# Load our schema
+# Load our schema and Bootstrap CakePHP code
 ADD db.dump db.dump
-RUN /etc/init.d/mysql start && mysql -u iu -piu < db.dump
-
-# Bootstrap CakePHP code
-RUN /var/www/html/lamorisse/bin/cake bake all users && \
+RUN /etc/init.d/mysql start && mysql -u iu -piu < db.dump && \
+/var/www/html/lamorisse/bin/cake bake all users && \
 /var/www/html/lamorisse/bin/cake bake all articles && \
 /var/www/html/lamorisse/bin/cake bake all tags
 
