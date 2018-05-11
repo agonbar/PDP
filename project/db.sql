@@ -2,136 +2,132 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-DROP SCHEMA IF EXISTS `mydb` ;
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+DROP SCHEMA IF EXISTS `iu` ;
+CREATE SCHEMA IF NOT EXISTS `iu` DEFAULT CHARACTER SET utf8 ;
+USE `iu` ;
 
-DROP TABLE IF EXISTS `Usuario` ;
+DROP TABLE IF EXISTS `users` ;
 
-CREATE TABLE IF NOT EXISTS `Usuario` (
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
   `email` VARCHAR(45) NOT NULL,
-  `Nombre` VARCHAR(45) NULL,
-  `Apellidos` VARCHAR(45) NULL,
+  `nombre` VARCHAR(45) NULL,
+  `apellidos` VARCHAR(45) NULL,
   `createdAt` DATETIME NULL,
   `updatedAt` DATETIME NULL,
-  `Enabled` TINYINT NULL,
-  `Asesor` TINYINT NULL,
-  PRIMARY KEY (`email`))
+  `enabled` TINYINT NULL,
+  `asesor` TINYINT NULL)
 ENGINE = InnoDB;
 
 
-DROP TABLE IF EXISTS `Empresa` ;
+DROP TABLE IF EXISTS `companys` ;
 
-CREATE TABLE IF NOT EXISTS `Empresa` (
-  `CIF` INT NOT NULL,
-  `Nombre` VARCHAR(45) NULL,
-  `Descripción` VARCHAR(45) NULL,
-  `Empresacol` VARCHAR(45) NULL,
-  `Usuario_email` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`CIF`),
-  CONSTRAINT `fk_Empresa_Usuario`
-    FOREIGN KEY (`Usuario_email`)
-    REFERENCES `Usuario` (`email`)
+CREATE TABLE IF NOT EXISTS `companys` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `cif` INT NOT NULL,
+  `nombre` VARCHAR(45) NULL,
+  `description` VARCHAR(45) NULL,
+  `companyscol` VARCHAR(45) NULL,
+  `user_id` VARCHAR(45) NOT NULL,
+  CONSTRAINT `fk_companys_users`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_Empresa_Usuario_idx` ON `Empresa` (`Usuario_email` ASC);
+CREATE INDEX `fk_companys_users_idx` ON `companys` (`user_id` ASC);
 
-DROP TABLE IF EXISTS `Industria` ;
+DROP TABLE IF EXISTS `industry` ;
 
-CREATE TABLE IF NOT EXISTS `Industria` (
-  `idIndustria` INT NOT NULL,
-  `Nombre` VARCHAR(45) NULL,
-  `Descripcion` VARCHAR(45) NULL,
-  `Usuario_email` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idIndustria`),
-  CONSTRAINT `fk_Industria_Usuario1`
-    FOREIGN KEY (`Usuario_email`)
-    REFERENCES `Usuario` (`email`)
+CREATE TABLE IF NOT EXISTS `industry` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `nombre` VARCHAR(45) NULL,
+  `description` VARCHAR(45) NULL,
+  `user_id` VARCHAR(45) NOT NULL,
+  CONSTRAINT `fk_industry_users1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_Industria_Usuario1_idx` ON `Industria` (`Usuario_email` ASC);
+CREATE INDEX `fk_industry_users1_idx` ON `industry` (`user_id` ASC);
 
 
-DROP TABLE IF EXISTS `Tipo Riesgo` ;
+DROP TABLE IF EXISTS `type` ;
 
-CREATE TABLE IF NOT EXISTS `Tipo Riesgo` (
-  `idTipo` INT NOT NULL,
-  `Descripcion` VARCHAR(45) NULL,
-  PRIMARY KEY (`idTipo`))
+CREATE TABLE IF NOT EXISTS `type` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `description` VARCHAR(45) NULL)
 ENGINE = InnoDB;
 
 
-DROP TABLE IF EXISTS `Riesgos` ;
+DROP TABLE IF EXISTS `risks` ;
 
-CREATE TABLE IF NOT EXISTS `Riesgos` (
-  `idRiesgos` INT NOT NULL,
-  `Nombre` VARCHAR(45) NULL,
-  `Descripcion` VARCHAR(45) NULL,
+CREATE TABLE IF NOT EXISTS `risks` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `nombre` VARCHAR(45) NULL,
+  `description` VARCHAR(45) NULL,
   `Criticalidad` TINYINT(1) NULL,
-  `Industria_idIndustria` INT NOT NULL,
-  `Tipo Riesgo_idTipo` INT NOT NULL,
-  PRIMARY KEY (`idRiesgos`),
-  CONSTRAINT `fk_Riesgos_Industria1`
-    FOREIGN KEY (`Industria_idIndustria`)
-    REFERENCES `Industria` (`idIndustria`)
+  `industry_id` INT NOT NULL,
+  `type_id` INT NOT NULL,
+  CONSTRAINT `fk_risks_industry1`
+    FOREIGN KEY (`industry_id`)
+    REFERENCES `industry` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Riesgos_Tipo Riesgo1`
-    FOREIGN KEY (`Tipo Riesgo_idTipo`)
-    REFERENCES `Tipo Riesgo` (`idTipo`)
+  CONSTRAINT `fk_risks_type1`
+    FOREIGN KEY (`type_id`)
+    REFERENCES `type` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_Riesgos_Industria1_idx` ON `Riesgos` (`Industria_idIndustria` ASC);
+CREATE INDEX `fk_risks_industry1_idx` ON `risks` (`industry_id` ASC);
 
-CREATE INDEX `fk_Riesgos_Tipo Riesgo1_idx` ON `Riesgos` (`Tipo Riesgo_idTipo` ASC);
+CREATE INDEX `fk_risks_type1_idx` ON `risks` (`type_id` ASC);
 
 
-DROP TABLE IF EXISTS `Requisitos` ;
+DROP TABLE IF EXISTS `requisites` ;
 
-CREATE TABLE IF NOT EXISTS `Requisitos` (
-  `idRequisitos` INT NOT NULL,
-  `Nombre` VARCHAR(45) NULL,
-  `Descripción` VARCHAR(45) NULL,
-  `Riesgos_idRiesgos` INT NOT NULL,
-  PRIMARY KEY (`idRequisitos`),
-  CONSTRAINT `fk_Requisitos_Riesgos1`
-    FOREIGN KEY (`Riesgos_idRiesgos`)
-    REFERENCES `Riesgos` (`idRiesgos`)
+CREATE TABLE IF NOT EXISTS `requisites` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `nombre` VARCHAR(45) NULL,
+  `description` VARCHAR(45) NULL,
+  `risks_id` INT NOT NULL,
+  CONSTRAINT `fk_requisites_risks1`
+    FOREIGN KEY (`risks_id`)
+    REFERENCES `risks` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_Requisitos_Riesgos1_idx` ON `Requisitos` (`Riesgos_idRiesgos` ASC);
+CREATE INDEX `fk_requisites_risks1_idx` ON `requisites` (`risks_id` ASC);
 
 
-DROP TABLE IF EXISTS `Examen requisitos` ;
+DROP TABLE IF EXISTS `exam` ;
 
-CREATE TABLE IF NOT EXISTS `Examen requisitos` (
-  `Empresa_CIF` INT NOT NULL,
-  `Requisitos_idRequisitos` INT NOT NULL,
-  `Resultados` VARCHAR(500) NULL,
-  PRIMARY KEY (`Empresa_CIF`, `Requisitos_idRequisitos`),
-  CONSTRAINT `fk_Empresa_has_Requisitos_Empresa1`
-    FOREIGN KEY (`Empresa_CIF`)
-    REFERENCES `Empresa` (`CIF`)
+CREATE TABLE IF NOT EXISTS `exam` (
+  `companys_id` INT NOT NULL,
+  `requisites_id` INT NOT NULL,
+  `resultados` VARCHAR(500) NULL,
+  PRIMARY KEY (`companys_id`, `requisites_id`),
+  CONSTRAINT `fk_companys_has_requisites_companys1`
+    FOREIGN KEY (`companys_id`)
+    REFERENCES `companys` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Empresa_has_Requisitos_Requisitos1`
-    FOREIGN KEY (`Requisitos_idRequisitos`)
-    REFERENCES `Requisitos` (`idRequisitos`)
+  CONSTRAINT `fk_companys_has_requisites_requisites1`
+    FOREIGN KEY (`requisites_id`)
+    REFERENCES `requisites` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_Empresa_has_Requisitos_Requisitos1_idx` ON `Examen requisitos` (`Requisitos_idRequisitos` ASC);
+CREATE INDEX `fk_companys_has_requisites_requisites1_idx` ON `exam` (`requisites_id` ASC);
 
-CREATE INDEX `fk_Empresa_has_Requisitos_Empresa1_idx` ON `Examen requisitos` (`Empresa_CIF` ASC);
+CREATE INDEX `fk_companys_has_requisites_companys1_idx` ON `exam` (`companys_id` ASC);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

@@ -26,11 +26,11 @@ RUN sed -i 's/my_app/iu/g' /var/www/html/lamorisse/config/app.php && \
 sed -i 's/secret/iu/g' /var/www/html/lamorisse/config/app.php
 
 # Load our schema and Bootstrap CakePHP code
-ADD db.dump db.dump
+ADD project/db.sql db.dump
 RUN /etc/init.d/mysql start && mysql -u iu -piu < db.dump && \
 /var/www/html/lamorisse/bin/cake bake all users && \
-/var/www/html/lamorisse/bin/cake bake all articles && \
-/var/www/html/lamorisse/bin/cake bake all tags
+/var/www/html/lamorisse/bin/cake bake all companys && \
+/var/www/html/lamorisse/bin/cake bake all industry
 
 # Expose ports
 EXPOSE 80

@@ -16,7 +16,7 @@
 
 **Lamorisse** is a risk management, web based software, tailored to the needs of the current market. It can be run on a local environment or open to the internet, as needed. Stop those long e-mail chains between your consultants, keep everything on one place and stop worrying.
 
-<a href="http://agonbar.duckdns.org"><img src="https://img.shields.io/docker/build/agonbar/pdp.svg" alt="Build Status" width="200"></a>
+<a href="https://hub.docker.com/r/agonbar/pdp/builds/"><img src="https://img.shields.io/docker/build/agonbar/pdp.svg" alt="Build Status" width="200"></a>
 
 ## Install
 With Docker
@@ -49,7 +49,7 @@ $ mysql -u iu -pui < db.dump
 
 [@srfernandez](https://github.com/srfernandez) Will be in charge of:
 - [Use Case Model.](https://raw.githubusercontent.com/agonbar/PDP/master/docs/Use%20Case%20model.jpg)
-- [Detailed description of Use Case Models.](https://github.com/agonbar/PDP/blob/master/docs/Use%20case%20model%20definition.doc?raw=true)
+- [Detailed description of Use Case Models.](https://github.com/agonbar/PDP/blob/master/docs/Use%20case%20model%20definition.pdf?raw=true)
 - [E-R Diagrams.](https://raw.githubusercontent.com/agonbar/PDP/master/docs/ER.png)
 
 ### Analysis (ETA  11/05/18)
