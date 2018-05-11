@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `companys` (
   `nombre` VARCHAR(45) NULL,
   `description` VARCHAR(45) NULL,
   `user_id` INT NOT NULL,
-  FOREIGN KEY `user_key` (`user_id`) REFERENCES `users`(`id`))
+  FOREIGN KEY `company_user_key` (`user_id`) REFERENCES `users`(`id`))
 ENGINE = InnoDB;
 
 DROP TABLE IF EXISTS `industry` ;
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `industry` (
   `nombre` VARCHAR(45) NULL,
   `description` VARCHAR(45) NULL,
   `user_id` INT NOT NULL,
-  FOREIGN KEY `user_key` (`user_id`) REFERENCES `users`(`id`))
+  FOREIGN KEY `industry_user_key` (`user_id`) REFERENCES `users`(`id`))
 ENGINE = InnoDB;
 
 DROP TABLE IF EXISTS `type` ;
