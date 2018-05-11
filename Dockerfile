@@ -30,7 +30,10 @@ ADD project/db.sql db.dump
 RUN /etc/init.d/mysql start && mysql -u iu -piu < db.dump && \
 /var/www/html/lamorisse/bin/cake bake all users && \
 /var/www/html/lamorisse/bin/cake bake all companys && \
-/var/www/html/lamorisse/bin/cake bake all industry
+/var/www/html/lamorisse/bin/cake bake all industry && \
+/var/www/html/lamorisse/bin/cake bake all type && \
+/var/www/html/lamorisse/bin/cake bake all risks && \
+/var/www/html/lamorisse/bin/cake bake all requisites
 
 # Expose ports
 EXPOSE 80
