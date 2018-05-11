@@ -27,8 +27,8 @@ CREATE TABLE IF NOT EXISTS `companys` (
   `cif` INT NOT NULL,
   `nombre` VARCHAR(45) NULL,
   `description` VARCHAR(45) NULL,
-  `user_id` VARCHAR(45) NOT NULL,
-  FOREIGN KEY `user_key` (`user_id`) REFERENCES `users` (`id`))
+  `user_id` INT NOT NULL,
+  FOREIGN KEY `user_key` (`user_id`) REFERENCES `users`(`id`))
 ENGINE = InnoDB;
 
 DROP TABLE IF EXISTS `industry` ;
@@ -37,8 +37,8 @@ CREATE TABLE IF NOT EXISTS `industry` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `nombre` VARCHAR(45) NULL,
   `description` VARCHAR(45) NULL,
-  `user_id` VARCHAR(45) NOT NULL,
-  FOREIGN KEY `user_key` (`user_id`) REFERENCES `users` (`id`))
+  `user_id` INT NOT NULL,
+  FOREIGN KEY `user_key` (`user_id`) REFERENCES `users`(`id`))
 ENGINE = InnoDB;
 
 DROP TABLE IF EXISTS `type` ;
@@ -58,8 +58,8 @@ CREATE TABLE IF NOT EXISTS `risks` (
   `Criticalidad` TINYINT(1) NULL,
   `industry_id` INT NOT NULL,
   `type_id` INT NOT NULL,
-  FOREIGN KEY `industry_key` (`industry_id`) REFERENCES `industry` (`id`),
-  FOREIGN KEY `type_key` (`type_id`) REFERENCES `type` (`id`))
+  FOREIGN KEY `industry_key` (`industry_id`) REFERENCES `industry`(`id`),
+  FOREIGN KEY `type_key` (`type_id`) REFERENCES `type`(`id`))
 ENGINE = InnoDB;
 
 DROP TABLE IF EXISTS `requisites` ;
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `requisites` (
   `nombre` VARCHAR(45) NULL,
   `description` VARCHAR(45) NULL,
   `risks_id` INT NOT NULL,
-  FOREIGN KEY `risks_key` (`risks_id`) REFERENCES `risks` (`id`))
+  FOREIGN KEY `risks_key` (`risks_id`) REFERENCES `risks`(`id`))
 ENGINE = InnoDB;
 
 DROP TABLE IF EXISTS `companys_requisites` ;
@@ -80,8 +80,8 @@ CREATE TABLE IF NOT EXISTS `companys_requisites` (
   `requisites_id` INT NOT NULL,
   `resultados` VARCHAR(500) NULL,
   PRIMARY KEY (`companys_id`, `requisites_id`),
-  FOREIGN KEY `companys_key` (`companys_id`) REFERENCES `companys` (`id`),
-  FOREIGN KEY `requisites_key` (`requisites_id`) REFERENCES `requisites` (`id`))
+  FOREIGN KEY `companys_key` (`companys_id`) REFERENCES `companys`(`id`),
+  FOREIGN KEY `requisites_key` (`requisites_id`) REFERENCES `requisites`(`id`))
 ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
