@@ -27,16 +27,9 @@ CREATE TABLE IF NOT EXISTS `companys` (
   `cif` INT NOT NULL,
   `nombre` VARCHAR(45) NULL,
   `description` VARCHAR(45) NULL,
-  `companyscol` VARCHAR(45) NULL,
   `user_id` VARCHAR(45) NOT NULL,
-  CONSTRAINT `fk_companys_users`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  FOREIGN KEY `user_key` (`user_id`) REFERENCES `users` (`id`))
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_companys_users_idx` ON `companys` (`user_id` ASC);
 
 DROP TABLE IF EXISTS `industry` ;
 
@@ -45,15 +38,8 @@ CREATE TABLE IF NOT EXISTS `industry` (
   `nombre` VARCHAR(45) NULL,
   `description` VARCHAR(45) NULL,
   `user_id` VARCHAR(45) NOT NULL,
-  CONSTRAINT `fk_industry_users1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  FOREIGN KEY `user_key` (`user_id`) REFERENCES `users` (`id`))
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_industry_users1_idx` ON `industry` (`user_id` ASC);
-
 
 DROP TABLE IF EXISTS `type` ;
 
@@ -72,22 +58,9 @@ CREATE TABLE IF NOT EXISTS `risks` (
   `Criticalidad` TINYINT(1) NULL,
   `industry_id` INT NOT NULL,
   `type_id` INT NOT NULL,
-  CONSTRAINT `fk_risks_industry1`
-    FOREIGN KEY (`industry_id`)
-    REFERENCES `industry` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_risks_type1`
-    FOREIGN KEY (`type_id`)
-    REFERENCES `type` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  FOREIGN KEY `industry_key` (`industry_id`) REFERENCES `industry` (`id`),
+  FOREIGN KEY `type_key` (`type_id`) REFERENCES `type` (`id`))
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_risks_industry1_idx` ON `risks` (`industry_id` ASC);
-
-CREATE INDEX `fk_risks_type1_idx` ON `risks` (`type_id` ASC);
-
 
 DROP TABLE IF EXISTS `requisites` ;
 
@@ -96,39 +69,20 @@ CREATE TABLE IF NOT EXISTS `requisites` (
   `nombre` VARCHAR(45) NULL,
   `description` VARCHAR(45) NULL,
   `risks_id` INT NOT NULL,
-  CONSTRAINT `fk_requisites_risks1`
-    FOREIGN KEY (`risks_id`)
-    REFERENCES `risks` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  FOREIGN KEY `risks_key` (`risks_id`) REFERENCES `risks` (`id`))
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_requisites_risks1_idx` ON `requisites` (`risks_id` ASC);
+DROP TABLE IF EXISTS `companys_requisites` ;
 
-
-DROP TABLE IF EXISTS `exam` ;
-
-CREATE TABLE IF NOT EXISTS `exam` (
+/* Exam */
+CREATE TABLE IF NOT EXISTS `companys_requisites` (
   `companys_id` INT NOT NULL,
   `requisites_id` INT NOT NULL,
   `resultados` VARCHAR(500) NULL,
   PRIMARY KEY (`companys_id`, `requisites_id`),
-  CONSTRAINT `fk_companys_has_requisites_companys1`
-    FOREIGN KEY (`companys_id`)
-    REFERENCES `companys` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_companys_has_requisites_requisites1`
-    FOREIGN KEY (`requisites_id`)
-    REFERENCES `requisites` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  FOREIGN KEY `companys_key` (`companys_id`) REFERENCES `companys` (`id`),
+  FOREIGN KEY `requisites_key` (`requisites_id`) REFERENCES `requisites` (`id`))
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_companys_has_requisites_requisites1_idx` ON `exam` (`requisites_id` ASC);
-
-CREATE INDEX `fk_companys_has_requisites_companys1_idx` ON `exam` (`companys_id` ASC);
-
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
