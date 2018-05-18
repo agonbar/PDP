@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `email` VARCHAR(45) NOT NULL,
   `nombre` VARCHAR(45) NULL,
+  `password` VARCHAR(45) NULL,
   `apellidos` VARCHAR(45) NULL,
   `createdAt` DATETIME NULL,
   `updatedAt` DATETIME NULL,
