@@ -77,12 +77,12 @@ DROP TABLE IF EXISTS `companys_requisites` ;
 
 /* Exam */
 CREATE TABLE IF NOT EXISTS `companys_requisites` (
-  `companys_id` INT NOT NULL,
-  `requisites_id` INT NOT NULL,
+  `company_id` INT NOT NULL,
+  `requisite_id` INT NOT NULL,
   `resultados` VARCHAR(500) NULL,
-  PRIMARY KEY (`companys_id`, `requisites_id`),
-  FOREIGN KEY `companys_key` (`companys_id`) REFERENCES `companys`(`id`),
-  FOREIGN KEY `requisites_key` (`requisites_id`) REFERENCES `requisites`(`id`))
+  PRIMARY KEY (`company_id`, `requisite_id`),
+  FOREIGN KEY `company_key` (`company_id`) REFERENCES `companys`(`id`),
+  FOREIGN KEY `requisite_key` (`requisite_id`) REFERENCES `requisites`(`id`))
 ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
