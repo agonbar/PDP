@@ -30,13 +30,13 @@ Normal installation (not recommended)
 $ git clone https://github.com/agonbar/PDP
 
 # Go into the repository
-$ cd PDP
+$ cd PDP/proyect
 
 # Copy contents from the PHP
-$ cp project/* /var/www/html
+$ cp lamorisse/* /var/www/html
 
 # Load de Database
-$ mysql -u iu -pui < db.dump
+$ mysql -u iu -pui < db.sql
 ```
 
 ## Roadmap
