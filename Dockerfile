@@ -26,8 +26,8 @@ RUN sed -i 's/my_app/iu/g' /var/www/html/lamorisse/config/app.php && \
 sed -i 's/secret/iu/g' /var/www/html/lamorisse/config/app.php
 
 # Load our schema and Bootstrap CakePHP code
-ADD project/db.sql db.dump
-RUN /etc/init.d/mysql start && mysql -u iu -piu < db.dump && \
+ADD project/db.sql db.sql
+RUN /etc/init.d/mysql start && mysql -u iu -piu < db.sql && \
 /var/www/html/lamorisse/bin/cake bake all users && \
 /var/www/html/lamorisse/bin/cake bake all companys && \
 /var/www/html/lamorisse/bin/cake bake all industry && \
