@@ -2,7 +2,7 @@
 git clone https://github.com/agonbar/PDP
 
 # Go into the repository
-cd PDP/proyect
+cd PDP/project
 
 # Copy contents from the PHP
 cp lamorisse/* /var/www/html
