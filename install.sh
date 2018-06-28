@@ -24,5 +24,3 @@ service apache2 restart
 cd /var/www/html
 wget -O - https://getcomposer.org/installer | php
 php composer.phar install
-
-sed "$(grep -n "AllowOverride None" /etc/apache2/apache2.conf |cut -f1 -d:)s/.*/AllowOverride All/" /etc/apache2/apache2.conf > /etc/apache2/apache2.conf
