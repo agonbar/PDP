@@ -9,17 +9,20 @@ su
 
 # Copy contents from the PHP
 cp -r lamorisse/* /var/www/html
-rm /var/ww/html/index.html
+rm /var/www/html/index.html
 
 # Load de Database
 mysql -u root -piu < db.sql
 
 # Install server dependency
-apt-get install php-intl -Y
+apt-get update
+apt-get install php-intl -y
 a2enmod rewrite
 service apache2 restart
 
 #Install cakephp dependency
-cd /var/ww/html
+cd /var/www/html
 wget -O - https://getcomposer.org/installer | php
 php composer.phar install
+
+sed "$(grep -n "AllowOverride None" /etc/apache2/apache2.conf |cut -f1 -d:)s/.*/AllowOverride All/" /etc/apache2/apache2.conf > /etc/apache2/apache2.conf
