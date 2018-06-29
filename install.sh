@@ -27,7 +27,7 @@ apt-get install php-intl -y
 a2enmod rewrite
 
 rm /etc/apache2/sites-available/000-default.conf
-cp PDP/project/000-default.conf /etc/apache2/sites-available/000-default.conf
+cp 000-default.conf /etc/apache2/sites-available/000-default.conf
 
 service apache2 restart
 
