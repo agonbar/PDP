@@ -22,8 +22,11 @@ mysql -u root -piu < db.sql
 # Install server dependency
 apt-get update
 apt-get install php-intl -y
+
 a2enmod rewrite
 service apache2 restart
+rm /etc/apache2/sites-available/000-default.conf
+cp PDP/project/000-default.conf
 
 #Install cakephp dependency
 cd /var/www/html
