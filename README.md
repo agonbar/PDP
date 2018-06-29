@@ -22,7 +22,7 @@
 With Docker
 ```bash
 # Run from dockerhub
-$ docker run -itdp 80:80 -p 22:22 -p 8765:8765 agonbar/pdp
+$ docker run -it -p 80:80 -p 22:22 -p 8765:8765 agonbar/pdp
 ```
 Normal installation (not recommended)
 ```bash
@@ -37,6 +37,11 @@ $ cp lamorisse/* /var/www/html
 
 # Load de Database
 $ mysql -u iu -pui < db.sql
+```
+
+Scripted version for a clean Debian 9.0 (run as root)
+```
+$ wget -O - https://goo.gl/e6VAks | bash
 ```
 
 ## Roadmap
