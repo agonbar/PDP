@@ -16,6 +16,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Requisite newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Requisite[] newEntities(array $data, array $options = [])
  * @method \App\Model\Entity\Requisite|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Requisite|bool saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\Requisite patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\Requisite[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\Requisite findOrCreate($search, callable $callback = null, $options = [])
