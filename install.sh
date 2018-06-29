@@ -14,6 +14,7 @@ fi
 
 # Copy contents from the PHP
 cp -r lamorisse/* /var/www/html
+cp -r lamorisse/.[^.]* /var/www/html
 rm /var/www/html/index.html
 
 # Load de Database
@@ -24,9 +25,11 @@ apt-get update
 apt-get install php-intl -y
 
 a2enmod rewrite
-service apache2 restart
+
 rm /etc/apache2/sites-available/000-default.conf
-cp PDP/project/000-default.conf
+cp PDP/project/000-default.conf /etc/apache2/sites-available/000-default.conf
+
+service apache2 restart
 
 #Install cakephp dependency
 cd /var/www/html
