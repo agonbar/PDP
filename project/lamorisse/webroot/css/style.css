@@ -324,9 +324,10 @@ pre {
 }
 
 .top-bar.expanded .title-area {
-    background-image: url(https://raw.githubusercontent.com/agonbar/PDP/master/lamorisse.png);
+    background-image: url(../img/lamorisse-logo.png);
     background-size: contain;
     background-repeat: no-repeat;
+    background-position-x: 5%;
 }
 html body nav.top-bar.expanded ul.title-area.large-3.medium-4.columns li.name h1 a {
     color: rgba(0, 0, 0, 0.0) !important;

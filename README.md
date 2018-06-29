@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="http://agonbar.duckdns.org"><img src="https://raw.githubusercontent.com/agonbar/PDP/master/lamorisse.png" alt="Lamorisse Logo" width="200"></a>
+  <a href="https://github.com/agonbar/PDP"><img src="https://raw.githubusercontent.com/agonbar/PDP/master/lamorisse.png" alt="Lamorisse Logo" width="200"></a>
   <br>
   Lamorisse
   <br>

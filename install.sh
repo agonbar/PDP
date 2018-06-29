@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# To run this script in one line, as root
+# wget -O - https://goo.gl/e6VAks | bash
+
 # Clone this repository
 git clone https://github.com/agonbar/PDP
 
