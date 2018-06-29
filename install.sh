@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Clone this repository
 git clone https://github.com/agonbar/PDP
 
@@ -5,7 +7,10 @@ git clone https://github.com/agonbar/PDP
 cd PDP/project
 
 #Gain admin rights
-su
+if ! [ $(id -u) = 0 ]; then
+  echo "I am not root, run me again"
+  su
+fi
 
 # Copy contents from the PHP
 cp -r lamorisse/* /var/www/html
